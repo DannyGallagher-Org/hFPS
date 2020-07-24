@@ -12,6 +12,8 @@ namespace hFPS.GuiAndHud
 
         [Header("Icons")] 
         [SerializeField] private GameObject inspectIcon;
+        [SerializeField] private GameObject useIcon;
+        [SerializeField] private GameObject grabIcon;
 
         private void Start()
         {
@@ -21,11 +23,29 @@ namespace hFPS.GuiAndHud
         public void SetCursor(AbstractInteractable abstractInteractable)
         {
             gameCursor.SetCursor(abstractInteractable.interactHand);
+            var firstText = string.Empty;
             if ((abstractInteractable.GetInteractType() & AbstractInteractable.InteractType.Inspect) != 0)
             {
                 inspectIcon.SetActive(true);
-                interactText.text = (abstractInteractable as ICanInspect)?.GetInspectText();
+                if(string.IsNullOrEmpty(firstText))
+                    firstText = (abstractInteractable as ICanInspect)?.GetInspectText();
             }
+            
+            if ((abstractInteractable.GetInteractType() & AbstractInteractable.InteractType.Use) != 0)
+            {
+                useIcon.SetActive(true);
+                if(string.IsNullOrEmpty(firstText))
+                    firstText = (abstractInteractable as ICanBeUsed)?.GetUseText();
+            }
+            
+            if ((abstractInteractable.GetInteractType() & AbstractInteractable.InteractType.Grab) != 0)
+            {
+                grabIcon.SetActive(true);
+                if(string.IsNullOrEmpty(firstText))
+                firstText = (abstractInteractable as ICanBeGrabbed)?.GetGrabText();
+            }
+            
+            interactText.text = firstText;
         }
 
         public void Clear()
@@ -33,6 +53,8 @@ namespace hFPS.GuiAndHud
             gameCursor.Clear();
             interactText.text = string.Empty;
             inspectIcon.gameObject.SetActive(false);
+            useIcon.gameObject.SetActive(false);
+            grabIcon.gameObject.SetActive(false);
         }
     }
 }

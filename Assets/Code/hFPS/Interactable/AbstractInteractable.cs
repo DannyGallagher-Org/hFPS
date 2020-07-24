@@ -17,8 +17,7 @@ namespace hFPS.Interactable
         {
             Inspect = 1 << 0,
             Use    = 1 << 1,
-            Search = 1 << 2,
-            PickUp = 1 << 3,
+            Grab = 1 << 2,
             
             Count
         }

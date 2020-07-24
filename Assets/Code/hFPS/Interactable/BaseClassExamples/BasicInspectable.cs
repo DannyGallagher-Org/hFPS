@@ -1,4 +1,4 @@
-﻿namespace hFPS.Interactable
+﻿namespace hFPS.Interactable.BaseClassExamples
 {
     public class BasicInspectable : AbstractInteractable, ICanInspect
     {
