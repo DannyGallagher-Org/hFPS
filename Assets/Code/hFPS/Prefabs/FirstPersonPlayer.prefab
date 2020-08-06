@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 2279535303721237604}
   groundCheck: {fileID: 2279535301851581742}
-  speed: 12
+  speed: 5
   jumpHeight: 3
   gravity: -19.62
   groundDistance: 0.4
@@ -294,5 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10381f79875c64b47b398b3ea0e72e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactRange: 4
   hudManager: {fileID: 0}
   fpsLook: {fileID: 2279535301920388016}
+  fpsMove: {fileID: 2279535303721237607}

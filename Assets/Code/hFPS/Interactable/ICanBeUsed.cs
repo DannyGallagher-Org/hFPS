@@ -4,5 +4,6 @@ namespace hFPS.Interactable
     {
         string GetUseText();
         void DoUse();
+        void DoUnuse();
     }
 }

@@ -1,17 +1,28 @@
+using System;
+using hFPS.Bindings;
 using UnityEngine.Events;
 
 namespace hFPS.Interactable.BaseClassExamples
 {
     public class BasicUseable : AbstractInteractable, ICanBeUsed
     {
-        public UnityEvent OnUse;
+        private PlayerActions _playerActions;
+        
+        public UnityEvent onUse;
+        public UnityEvent onUnuse;
         
         public string useText = "use";
         
         public string GetUseText() => useText;
-        public void DoUse()
+
+        public virtual void DoUse()
         {
-            OnUse?.Invoke();
+            onUse?.Invoke();
+        }
+
+        public virtual void DoUnuse()
+        {
+            onUnuse?.Invoke();
         }
     }
 }

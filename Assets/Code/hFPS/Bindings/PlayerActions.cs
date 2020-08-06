@@ -17,22 +17,33 @@ namespace hFPS.Bindings
         public readonly PlayerTwoAxisAction Look;
 
         public readonly PlayerAction Jump;
+        public readonly PlayerAction Use;
+        public readonly PlayerAction InteractLeftHand;
+        public readonly PlayerAction InteractRightHand;
+
+        public readonly PlayerAction InteractScrollUp;
+        public readonly PlayerAction InteractScrollDown;
 
         private PlayerActions()
         {
-            _moveLeft = CreatePlayerAction("Move Left");
-            _moveRight = CreatePlayerAction("Move Right");
-            _moveForward = CreatePlayerAction("Move Forward");
-            _moveBack = CreatePlayerAction("Move Back");
+            _moveLeft = CreatePlayerAction("MoveLeft");
+            _moveRight = CreatePlayerAction("MoveRight");
+            _moveForward = CreatePlayerAction("MoveForward");
+            _moveBack = CreatePlayerAction("MoveBack");
             Move = CreateTwoAxisPlayerAction(_moveLeft, _moveRight, _moveBack, _moveForward);
 
-            _lookLeft = CreatePlayerAction("Look Left");
-            _lookRight = CreatePlayerAction("Look Right");
-            _lookUp = CreatePlayerAction("Look Up");
-            _lookDown = CreatePlayerAction("Look Down");
+            _lookLeft = CreatePlayerAction("LookLeft");
+            _lookRight = CreatePlayerAction("LookRight");
+            _lookUp = CreatePlayerAction("LookUp");
+            _lookDown = CreatePlayerAction("LookDown");
             Look = CreateTwoAxisPlayerAction(_lookLeft, _lookRight, _lookDown, _lookUp);
 
             Jump = CreatePlayerAction("Jump");
+            InteractLeftHand = CreatePlayerAction("InteractLeftHand");
+            InteractRightHand = CreatePlayerAction("InteractRightHand");
+
+            InteractScrollUp = CreatePlayerAction("InteractScrollUp");
+            InteractScrollDown = CreatePlayerAction("InteractScrollDown");
         }
 
         public static PlayerActions CreateWithDefaultBindings()
@@ -68,6 +79,16 @@ namespace hFPS.Bindings
             // Other
             playerActions.Jump.AddDefaultBinding(Key.Space);
             playerActions.Jump.AddDefaultBinding(InputControlType.Action3);
+
+            playerActions.InteractLeftHand.AddDefaultBinding(Mouse.LeftButton);
+//            playerActions.InteractLeftHand.AddDefaultBinding(InputControlType.Action3);
+            
+            playerActions.InteractRightHand.AddDefaultBinding(Mouse.RightButton);
+//            playerActions.InteractRightHand.AddDefaultBinding(InputControlType.Action3);
+
+            // Interactions
+            playerActions.InteractScrollUp.AddDefaultBinding(Mouse.PositiveScrollWheel);
+            playerActions.InteractScrollDown.AddDefaultBinding(Mouse.NegativeScrollWheel);
             
             return playerActions;
         }

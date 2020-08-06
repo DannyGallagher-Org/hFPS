@@ -33,6 +33,9 @@ namespace hFPS.Interactable
             if (this is ICanBeUsed)
                 result |= InteractType.Use;
 
+            if (this is ICanBeGrabbed)
+                result |= InteractType.Grab;
+
             return result;
         }
     }

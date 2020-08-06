@@ -1,4 +1,5 @@
-﻿using hFPS.Bindings;
+﻿using System;
+using hFPS.Bindings;
 using UnityEngine;
 
 namespace hFPS
@@ -19,6 +20,7 @@ namespace hFPS
 
         private bool _isGrounded;
         private Vector3 _velocity;
+        private float _momentum;
 
         private void Awake()
         {
@@ -39,7 +41,12 @@ namespace hFPS
 
             var move = _transform.right * moveX + _transform.forward * moveZ;
 
-            controller.Move(Time.deltaTime * speed * move);
+            if (move.magnitude > 0f && _momentum < 1f)
+                _momentum += Time.deltaTime;
+            else if (Math.Abs(move.magnitude) < 0.01f)
+                _momentum = 0f;
+
+            controller.Move(Time.deltaTime * speed * _momentum * move);
 
             if (_playerActions.Jump.WasPressed && _isGrounded)
                 _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
