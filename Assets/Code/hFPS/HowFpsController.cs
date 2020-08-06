@@ -140,19 +140,19 @@ namespace hFPS
             hudManager.Clear();
         }
 
-        public void Block()
+        public void Block(bool blockMove, bool blockLook)
         {
             _blocked = true;
-            fpsMove.enabled = false;
-            fpsLook.enabled = false;
+            fpsMove.enabled = !blockMove;
+            fpsLook.enabled = !blockLook;
             hudManager.Hide();
         }
 
-        public void UnBlock()
+        public void UnBlock(bool unblockMove, bool unblockLook)
         {
             _blocked = false;
-            fpsMove.enabled = true;
-            fpsLook.enabled = true;
+            fpsMove.enabled = unblockMove;
+            fpsLook.enabled = unblockMove;
             hudManager.Show();
         }
     }
