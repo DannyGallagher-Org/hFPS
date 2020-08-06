@@ -23,9 +23,9 @@ namespace hFPS
         
         private PlayerActions _playerActions;
         private RaycastHit _result;
+        
+        public void ForceUnUse() => _usingObject = false;
         private bool _usingObject;
-        private bool _blocked;
-
 
         private void Awake()
         {
@@ -142,7 +142,6 @@ namespace hFPS
 
         public void Block(bool blockMove, bool blockLook)
         {
-            _blocked = true;
             fpsMove.enabled = !blockMove;
             fpsLook.enabled = !blockLook;
             hudManager.Hide();
@@ -150,9 +149,8 @@ namespace hFPS
 
         public void UnBlock(bool unblockMove, bool unblockLook)
         {
-            _blocked = false;
             fpsMove.enabled = unblockMove;
-            fpsLook.enabled = unblockMove;
+            fpsLook.enabled = unblockLook;
             hudManager.Show();
         }
     }
