@@ -145,6 +145,13 @@ namespace hFPS.GuiAndHud
         {
             if (_inspecting)
                 return;
+
+            if (!inspectPrefab)
+            {
+                Debug.LogWarning("Tried inspection with no prefab.");
+                return;
+            }
+            
             cursorCanvasGroup.DOFade(0f, 1f);
             interactablesCanvasGroup.DOFade(0f, 1f);
             
