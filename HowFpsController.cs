@@ -29,6 +29,7 @@ namespace hFPS
 
         private void Awake()
         {
+            hudManager = FindObjectOfType<HudManager>();
             Instance = this;
             _playerActions = PlayerActions.CreateWithDefaultBindings();
         }

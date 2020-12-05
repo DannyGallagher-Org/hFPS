@@ -10,7 +10,8 @@ namespace hFPS
         // Inspector fields
         [SerializeField] private Transform playerBody;
         
-        public float mouseSensitivity = 100f;
+        public float mouseSensitivity = 3f;
+        private const float MouseSensitivityConstant = 100f;
 
         private PlayerActions _playerActions;
 
@@ -28,8 +29,8 @@ namespace hFPS
 
         private void Update()
         {
-            var lookX = _playerActions.Look.X * mouseSensitivity * Time.deltaTime;
-            var lookY = _playerActions.Look.Y * mouseSensitivity * Time.deltaTime;
+            var lookX = _playerActions.Look.X * mouseSensitivity * MouseSensitivityConstant * Time.deltaTime;
+            var lookY = _playerActions.Look.Y * mouseSensitivity * MouseSensitivityConstant * Time.deltaTime;
 
             _xRotation -= lookY;
             _xRotation = Mathf.Clamp(_xRotation, -80f, 90f);
